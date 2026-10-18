@@ -29,10 +29,26 @@ cd uncle-pop-skill
 
 | Agent | Command | Installs to |
 |-------|---------|-------------|
-| **Google Antigravity** (workspace) | `./install.sh antigravity` (run from your project root) | `.agent/skills/uncle-pop/` |
+| **Google Antigravity** (workspace) | `./install.sh antigravity [project-dir]` | `<project-dir>/.agent/skills/uncle-pop/` |
 | **Claude Code** (all projects) | `./install.sh claude` | `~/.claude/skills/uncle-pop/` |
-| **Claude Code** (this project only) | `./install.sh claude-project` | `.claude/skills/uncle-pop/` |
+| **Claude Code** (one project) | `./install.sh claude-project [project-dir]` | `<project-dir>/.claude/skills/uncle-pop/` |
 | **Any other agent** | `./install.sh /path/to/skills` | `/path/to/skills/uncle-pop/` |
+
+**Which project does it install into?**
+- If you pass `project-dir`, the skill goes there.
+- If you run the script from **inside this repository** (for example, you cloned it into your project), it installs into the **parent folder**:
+
+  ```bash
+  cd my-app/uncle-pop-skill
+  ./install.sh antigravity        # → my-app/.agent/skills/uncle-pop
+  ```
+
+- Otherwise it installs into the current folder:
+
+  ```bash
+  cd my-app
+  ./uncle-pop-skill/install.sh antigravity    # → my-app/.agent/skills/uncle-pop
+  ```
 
 Or copy it by hand — the skill is just the `uncle-pop/` folder:
 
