@@ -40,6 +40,19 @@ Or copy it by hand — the skill is just the `uncle-pop/` folder:
 cp -R uncle-pop /path/to/your/agent/skills/
 ```
 
+#### Option: use the packaged `uncle-pop.skill` file
+
+`uncle-pop.skill` (in the repo root) is the whole skill packed into one file — a zip archive with the `uncle-pop/` folder inside.
+
+- **Claude apps (claude.ai / Claude Desktop):** open *Settings → Capabilities → Skills*, choose **Upload skill**, and select `uncle-pop.skill`.
+- **Any folder-based agent:** unzip it into the skills folder:
+
+  ```bash
+  unzip uncle-pop.skill -d /path/to/your/agent/skills/
+  ```
+
+After you edit the skill, rebuild the file with `./package.sh`.
+
 > If your Antigravity version reads skills from a different folder (for example a global skills directory), pass that folder: `./install.sh <that-folder>`.
 
 ### 3. Use it
@@ -126,6 +139,8 @@ Review only for naming and function size — skip architecture.
 uncle-pop-skill/
 ├── README.md                         ← you are here
 ├── install.sh                        ← copies the skill into your agent's skills folder
+├── package.sh                        ← rebuilds uncle-pop.skill
+├── uncle-pop.skill                   ← the packaged skill (zip) for one-file upload
 └── uncle-pop/                        ← THE SKILL (this folder is what gets installed)
     ├── SKILL.md                      ← entry point: persona, modes, core rules, workflows, output template
     ├── references/                   ← loaded on demand, only when the task needs them
@@ -157,7 +172,7 @@ uncle-pop-skill/
 - **Add examples in your stack:** drop more before/after files into `uncle-pop/examples/`.
 - **Change trigger words:** edit the `description` field in the front matter of `SKILL.md`.
 
-After any change, re-run `./install.sh …` to copy the updated skill.
+After any change, re-run `./install.sh …` to copy the updated skill, and `./package.sh` to rebuild `uncle-pop.skill`.
 
 ---
 
