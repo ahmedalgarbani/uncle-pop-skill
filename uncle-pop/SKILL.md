@@ -1,6 +1,8 @@
 ---
 name: uncle-pop
 description: Reviews, writes and refactors code following Robert C. Martin's ("Uncle Bob") books — Clean Code, Clean Architecture, The Clean Coder, Agile Software Development (SOLID) — plus classic Gang of Four design patterns. Use when the user asks for a code review, refactoring, "clean up this code", architecture or layering advice, SOLID violations, code smells, naming, testability, or which design pattern fits. Works with any programming language.
+metadata:
+  opencode/slash: "true"
 ---
 
 # Uncle Pop — Clean Code Craftsman

@@ -12,7 +12,7 @@
 
 > **"The only way to go fast is to go well."**
 
-Works with any language (TypeScript, Python, Java, C#, Go, Rust, PHP, Kotlin, …) and follows each language's own idioms. Built for Google Antigravity, and also works in Claude Code or any agent that loads `SKILL.md` skills.
+Works with any language (TypeScript, Python, Java, C#, Go, Rust, PHP, Kotlin, …) and follows each language's own idioms. Built for Google Antigravity, and also works in Claude Code, OpenCode, or any agent that loads `SKILL.md` skills.
 
 ---
 
@@ -32,6 +32,8 @@ cd uncle-pop-skill
 | **Google Antigravity** (workspace) | `./install.sh antigravity [project-dir]` | `<project-dir>/.agent/skills/uncle-pop/` |
 | **Claude Code** (all projects) | `./install.sh claude` | `~/.claude/skills/uncle-pop/` |
 | **Claude Code** (one project) | `./install.sh claude-project [project-dir]` | `<project-dir>/.claude/skills/uncle-pop/` |
+| **OpenCode** (all projects) | `./install.sh opencode` | `~/.config/opencode/skills/uncle-pop/` |
+| **OpenCode** (one project) | `./install.sh opencode-project [project-dir]` | `<project-dir>/.opencode/skills/uncle-pop/` |
 | **Any other agent** | `./install.sh /path/to/skills` | `/path/to/skills/uncle-pop/` |
 
 **Which project does it install into?**
@@ -55,6 +57,39 @@ Or copy it by hand — the skill is just the `uncle-pop/` folder:
 ```bash
 cp -R uncle-pop /path/to/your/agent/skills/
 ```
+
+#### OpenCode guide
+
+OpenCode loads skills natively through its built-in `skill` tool.
+
+1. **Install** (pick one):
+
+   ```bash
+   ./install.sh opencode                     # every project → ~/.config/opencode/skills/uncle-pop
+   ./install.sh opencode-project             # one project   → <project>/.opencode/skills/uncle-pop
+   ```
+
+   > Already installed for Claude Code? OpenCode also reads `.claude/skills/` and `~/.claude/skills/`, so you don't need a second copy.
+
+2. **Restart OpenCode** in your project so it discovers the skill.
+3. **Use it**:
+   - Ask normally, e.g. `Review lib/main.dart with uncle pop`. The agent sees the skill in its list and loads it when needed.
+   - Or type `/uncle-pop` in the TUI. The skill sets `metadata.opencode/slash: "true"` in `SKILL.md`, so it shows up as a slash command.
+4. **Permissions (optional):** if your `opencode.json` restricts skills, allow it:
+
+   ```json
+   {
+     "permission": {
+       "skill": {
+         "uncle-pop": "allow"
+       }
+     }
+   }
+   ```
+
+**Troubleshooting**
+- *Skill not listed:* make sure the path is exactly `.../skills/uncle-pop/SKILL.md`. The folder name must match `name: uncle-pop`.
+- *Project install not found:* OpenCode searches from your current folder up to the git root. Start OpenCode inside the project where you installed the skill.
 
 #### Option: use the packaged `uncle-pop.skill` file
 

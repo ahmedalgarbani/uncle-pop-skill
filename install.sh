@@ -5,6 +5,8 @@
 #   ./install.sh claude                          -> ~/.claude/skills/uncle-pop                (Claude Code, personal)
 #   ./install.sh claude-project [project-dir]    -> <project-dir>/.claude/skills/uncle-pop    (Claude Code, one project)
 #   ./install.sh antigravity    [project-dir]    -> <project-dir>/.agent/skills/uncle-pop     (Antigravity, one workspace)
+#   ./install.sh opencode                        -> ~/.config/opencode/skills/uncle-pop       (OpenCode, all projects)
+#   ./install.sh opencode-project [project-dir]  -> <project-dir>/.opencode/skills/uncle-pop  (OpenCode, one project)
 #   ./install.sh <custom-dir>                    -> <custom-dir>/uncle-pop
 #
 # <project-dir> defaults to the current directory. When you run the script from inside
@@ -30,7 +32,9 @@ case "${1:-}" in
   claude)         TARGET_ROOT="$HOME/.claude/skills" ;;
   claude-project) TARGET_ROOT="$(resolve_project_dir "${2:-}")/.claude/skills" ;;
   antigravity)    TARGET_ROOT="$(resolve_project_dir "${2:-}")/.agent/skills" ;;
-  "")             echo "Usage: $0 {claude|claude-project [project-dir]|antigravity [project-dir]|<skills-dir>}" >&2; exit 1 ;;
+  opencode)       TARGET_ROOT="${XDG_CONFIG_HOME:-$HOME/.config}/opencode/skills" ;;
+  opencode-project) TARGET_ROOT="$(resolve_project_dir "${2:-}")/.opencode/skills" ;;
+  "")             echo "Usage: $0 {claude|claude-project [project-dir]|antigravity [project-dir]|opencode|opencode-project [project-dir]|<skills-dir>}" >&2; exit 1 ;;
   *)              TARGET_ROOT="$1" ;;
 esac
 
